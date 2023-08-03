@@ -9,9 +9,11 @@ type Creator = {
   image: string;
   username: string;
   email: string;
+  _id: string;
 };
 
 interface Post {
+  _id: string;
   creator: Creator;
   prompt: string;
   tag: string;

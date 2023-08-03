@@ -5,6 +5,11 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Profile from "@/components/profile";
 
+interface Prompt {
+  _id: string | number;
+  tag: string;
+}
+
 const ProfilePage = () => {
   const { data: session } = useSession();
   const [posts, setPosts] = useState([]);
@@ -27,7 +32,9 @@ const ProfilePage = () => {
           method: "DELETE",
         });
 
-        const filteredPosts = myPosts.filter((item) => item?._id !== post._id);
+        const filteredPosts = myPosts.filter(
+          (item: Prompt) => item?._id !== post._id
+        );
 
         setMyPosts(filteredPosts);
         router.push("/");
