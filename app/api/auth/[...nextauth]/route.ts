@@ -22,7 +22,9 @@ const handler = NextAuth({
     callbacks: {
         async session({ session }) {
             const sessionUser = await Users.findOne({ email: session?.user?.email });
-            session.user.id = sessionUser._id.toString();
+            
+            if(session.user != undefined)
+              session.user.id = sessionUser._id.toString();
       
             return session;
             
