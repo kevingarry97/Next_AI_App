@@ -5,6 +5,13 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Form from "@/components/form";
 
+interface Prompt {
+  name?: string | null | undefined;
+  email?: string | null | undefined;
+  image?: string | null | undefined;
+  id: string | null | undefined;
+}
+
 const CreatePrompt = () => {
   const { data: session } = useSession();
   const router = useRouter();
