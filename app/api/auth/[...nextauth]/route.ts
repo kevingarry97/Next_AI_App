@@ -16,10 +16,15 @@ const handler = NextAuth({
       async session({ session }) {
           const sessionUser = await Users.findOne({ email: session?.user?.email });
           
-          if(session.user != undefined)
-            session.user.id = sessionUser._id.toString();
+          const newSession = {
+            ...session,
+            user: {
+              ...session.user,
+              id: sessionUser._id.toString()
+            },
+          };
     
-          return session;
+          return newSession;
           
       },
       async signIn({ user }: {user: User | AdapterUser}) {
